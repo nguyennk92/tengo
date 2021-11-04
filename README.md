@@ -1,56 +1,16 @@
 # Go La Tengo
 
-[![build status](https://img.shields.io/github/workflow/status/skeema/tengo/Tests/main)](https://github.com/skeema/tengo/actions)
-[![code coverage](https://img.shields.io/coveralls/skeema/tengo.svg)](https://coveralls.io/r/skeema/tengo)
-[![godoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/skeema/tengo)
-[![latest release](https://img.shields.io/github/release/skeema/tengo.svg)](https://github.com/skeema/tengo/releases)
-
 Golang library for MySQL and MariaDB database automation
 
-## Features
+## Repo now archived
 
-### Schema introspection and diff
+Skeema is a bootstrapped (self-funded) product, primarily built by an independent developer. The continued viability of Skeema's open source development is dependent on consulting services and commercial products; without these revenue sources, ongoing development is not possible.
 
-Go La Tengo examines several `information_schema` tables in order to build Go struct values representing schemas (databases), tables, columns, indexes, foreign key constraints, stored procedures, and functions. These values can be diff'ed to generate corresponding DDL statements.
+Go La Tengo was designed as a reusable package in a separate repo, with the hope of building development momentum for use-cases *outside* of schema management. However, maintaining it as a separate repo is time-consuming: the codebase must be separately maintained, tested, versioned, and released; and then vendored inside of the Skeema CLI's repo.
 
-### Instance modeling
+Recently, one of the external users of the Tengo package -- a startup that has raised over $55 million USD -- has been building commercial schema management functionality that directly competes with Skeema as a whole. That company is now also building functionality that is specifically only offered in Skeema's commercial edition. This company's behavior **willfully and directly endangers the continued existence of Skeema**, and as a result of this, it is simply no longer viable to offer Go La Tengo as an independent repository. All functionality here has now been merged directly into the Skeema CLI's primary repo as an internal sub-package. As of 4 November 2021, this separate Tengo repo is now archived, and may be deleted entirely in the coming months.
 
-The `tengo.Instance` struct models a single database instance. It keeps track of multiple, separate connection pools for using different default schema and session settings. This helps to avoid problems with Go's database/sql methods, which are incompatible with USE statements and SET SESSION statements.
-
-## Status
-
-This is package is battle-tested from years of production use at many companies. The release numbering is still pre-1.0 though as the API is subject to minor changes. Backwards-incompatible changes are generally avoided whenever possible, but no guarantees are made. 
-
-As of September 2021, open source development of this repo is mostly frozen until further notice.
-
-### Supported databases
-
-Tagged releases are tested against the following databases, all running on Linux:
-
-* MySQL 5.5 - 8.0
-* Percona Server 5.5 - 8.0
-* MariaDB 10.1 - 10.6
-
-Outside of a tagged release, every commit to the main branch is automatically tested against MySQL 5.7 and 8.0.
-
-### Unsupported in table diffs
-
-Go La Tengo **cannot** diff tables containing any of the following MySQL features:
-
-* spatial indexes
-* sub-partitioning (two levels of partitioning in the same table)
-* special features of non-InnoDB storage engines
-
-Go La Tengo also does not yet support rename operations, e.g. column renames or table renames.
-
-### Ignored object types
-
-The following object types are completely ignored by this package. Their presence won't break anything, but they will not be introspected or represented by the structs in this package.
-
-* views
-* triggers
-* events
-* grants / users / roles
+The open source Community edition of the Skeema CLI remains available and maintained at this time, but in light of such blatant bad actors in the open source space, it is entirely possible its license may change to either BSL or AGPL in the future. In any case, most new feature development is focused on the closed-source commercially-licensed Premium edition at this time. 
 
 ## External Dependencies
 
