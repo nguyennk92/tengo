@@ -1,4 +1,4 @@
-module github.com/skeema/tengo
+module github.com/nguyennk92/tengo
 
 go 1.15
 
